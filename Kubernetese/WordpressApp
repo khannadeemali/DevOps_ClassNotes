@@ -12,7 +12,7 @@ spec:
  
  #Here we are just making a claim for 200GB Volume in Read-write mode
 #The volume will be provisioned first, and then it will be claimed by our MySQL pod
-# Now we can create deployment file for our MySQL pod
+# Now we can create deployment file for our MySQL pod.
 
 
 ---
