@@ -16,7 +16,7 @@ metadata:
  name: nginx-pod
  labels:
   type: reverse-proxy
-  author: edureka
+  author: al
 spec:
  containers:
   - name: mynginx
@@ -49,7 +49,7 @@ kind: Pod
 metadata:
  name: jenkins-pod
  labels:
-  author: edureka
+  author: al
   type: CI-CD
 spec:
  containers:
@@ -78,7 +78,7 @@ kind: ReplicaSet
 metadata:
  name: tomcat-rc
  labels:
-  author: edureka
+  author: al
   type: webserver
 spec:
  replicas: 3
@@ -157,7 +157,7 @@ kind: Deployment
 metadata:
  name: nginx-deployment
  labels:
-  author: edureka
+  author: al
   type: proxyserver
 spec:
  replicas: 2
@@ -223,7 +223,7 @@ kind: Pod
 metadata:
  name: jenkins-pod1
  labels:
-  author: edureka
+  author: al
   type: CI
 spec:
  containers:
@@ -252,7 +252,7 @@ spec:
     port: 8080
     nodePort: 30008
  selector:
-  author: edureka
+  author: al
   type: CI-CD
 
 	# kubectl create -f myservice.yml
@@ -284,7 +284,7 @@ kind: Deployment
 metadata:
  name: nginx-deployment
  labels:
-  author: edureka
+  author: al
   type: proxyserver
 spec:
  replicas: 2
