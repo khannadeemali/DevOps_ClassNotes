@@ -29,7 +29,7 @@ nginx   Deployment/nginx   0%/40%    3         5         3          55s
 
 ### install apache benchmark tool
 
-` apt-get install apache2-utils` 
+`apt-get install apache2-utils` 
 
 #### Get the service IP address using 
  
