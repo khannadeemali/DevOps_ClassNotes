@@ -102,6 +102,12 @@ paste private ip of host ==> 172.31.39.169
 
 :wq!
 
+*********************
+VERIFY the HOSTS
+*********************
+
+ansible --list-hosts all or ansible --list-hosts webserver
+
 ***********************************************
 
 OPEN SECURE SHELL CONNECTION 
