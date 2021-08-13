@@ -107,13 +107,14 @@ VERIFY the HOSTS
 *********************
 
 ansible --list-hosts all or ansible --list-hosts webserver
+ansible -m pig webserver
 
 ***********************************************
 
 OPEN SECURE SHELL CONNECTION 
 
 ***********************************************
-
+on Ansible controller machie -
 Step 1: change to ec2-user
 
 	# su - ec2-user
