@@ -107,7 +107,12 @@ VERIFY the HOSTS
 *********************
 
 ansible --list-hosts all or ansible --list-hosts webserver
-ansible -m pig webserver
+ansible -m ping webserver -- To check the connectivity from ACM to hosts nodes
+
+-- We can also run the linux command and perform actions on the hists node from ACM
+e. g. -
+ansible -a "touch /tmp/file" webserver -- This will create the file in tmp directory on the hosts machine
+ansible -a "ls -l /tmp" webserver -- Using this command, the above created file can be verified on the hosts node
 
 ***********************************************
 
