@@ -254,9 +254,9 @@ docker deplyment
   - name: install git
     yum: name=git state=present
   - name: get the dockerfile from githib
-    git: repo=https://github.com/Sonal0409/dockerdemo.git dest=/tmp/gitrepo
+    git: repo=https://github.com/mhali922/ansible-addressbook.git dest=/tmp/gitrepo4
   - name: build dockerfile
-    command: chdir=/tmp/gitrepo docker build -t deployimage:ansible .
+    command: chdir=/tmp/gitrepo4 docker build -t deployimage:ansible .
   - name: run the dockerfile
     command: docker run -itd -P deployimage:ansible
 
