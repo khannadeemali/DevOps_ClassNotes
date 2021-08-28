@@ -1,0 +1,25 @@
+Three type of Service to access application pods from outside the cluster -
+Lets first discuss the service type - NODEPORT 
+Below service.yaml file is for a single POD -
+---
+apiVersion: v1
+kind: Service
+metadata:
+ name: myapp-svc
+spec:
+ type: NodePort
+ ports:
+  - targetPort: 80
+    port: 80
+	nodePort: 30001
+ selector:
+  app: myapp
+  type: webserver
+--
+But what else if we have multiple similar pods are running on the Instance/Node, this can be taken as a selector 
+since the name of app is myapp(and it has same labels for all the similar pods) and same label set a selector for the applications as service
+and when service is created it looks for a matching pods as a label and finds them either pods is single or multiple 
+and the service automatically select all the pods running with same label as an endpoint and forward for the external request coming from the user.
+We need not to do any additional configurations and its uses the Random algorith to distribute the loads to pods.
+Second thing If the pods are distributed across multiple nodes, In this case we have web-app application on seperate nodes how the Service Nodeport acts upon ?
+In this case also we need not to do any additional activity, K8 is creating a service that spans across all the nodes in the cluster automatically as well.
