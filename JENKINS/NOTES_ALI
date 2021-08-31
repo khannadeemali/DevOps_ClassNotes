@@ -1,0 +1,4 @@
+Continous Delivery and Continous Deployment
+Code - Build - Test --> Continous Integration
+Code - Build - Test - Release --> Continous Delivery
+Code - Build - Test - Release - Deploy --> Continous Deployment
