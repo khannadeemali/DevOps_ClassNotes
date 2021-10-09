@@ -1,6 +1,3 @@
-
-Slide 65 for Maven
-
 Git installation:
 yum install git -y
 
