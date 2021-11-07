@@ -22,7 +22,23 @@ spec:
   - name: mynginx
     image: nginx
 
+#Service Account, Clusterrole and Clusterrolebinding
 
+# check serviceaccounts -
+- kubectl get sa
+- kubectl get sa -A
+- kubectl describe sa <service-account-name> -n <namespace>
+
+# clusterrole:  clusterrole grant access to cluster specific resources : Nodes, Pods, namespace etc. and secure to specific applications in the cluster
+- kubctl get clusterole 
+- kubectl describe clusterrole <name of the clusterrole>
+
+# Tie Serviceaccount and Clusterrole is creating the 'Clusterrolebinding'
+# Role and Rolebinding -
+
+
+#Role and clusterrole  - Both represents set of permission 
+#Role sets permission particular the namespace however clusterrole is non-namespace(means no need to specify namespace in yaml for clusterrole
 
 	# kubectl get pods   
  
