@@ -1,0 +1,157 @@
+1. One HW - One OS - One App
+2. Virtualization concept - One HW - One OS - But can be a multiple flavour as a VM's
+	- Resources: no proper optimize resource utilization
+        - static allocation
+        - Scalability: suppose user width on my tomcat application is 200 and now got increased how to manage?e.g. amazon sale
+3. Docker solution - on host OS just install "docker engine" and forget about underline configurtion + create isolated processes
+		   - Run the application in form of containers
+ what is docker ?  - create, deploy and run applications with ease by using containers.
+   Benefits - lightweight because no underline os required
+	      Fast
+              easy to be created from images
+              scale up/down- numerous copy of container can be created
+
+
+Install Docker -
+sudo su - 
+yum install docker -y(linux)
+(on ubuntu) - first package and then install
+
+What is a Docker Image? - Collection of binareis/Libraries file in order to install and the softwares
+
+systemctl start docker
+docker pull centos
+docker images
+docker run centos - It will run and exit immidiately
+
+docker ps -a
+docker run -it --name c1 centos
+docker stats
+docker attach c1
+
+docker rm <container_name>
+docker rmi <image id>
+
+
+Search an image - tomcat type image - see the different version
+Imagename:tagname
+docker pull tomcat (will pull the latest image)
+we can put the specific version like docker pull tomcat:<version>
+
+public registory/Imagename -> by default image will be pulled from docker.io or we can put registry as per our choice
+public registory not required or mandatory by default docker will pull from docker.io
+
+public repository/reponame/imagename
+
+- we can create our own private registry for custom images. 0.0.10.0:8000/ImageName
+
+docker pull ubuntu -> will pull ubuntu's latest image from public registry and default repo 
+
+docker pull tomcat:7 -> 
+
+------
+
+docker run nginx -> does two things : 1st check image locally and if not then pull and 2nd run the container
+but if we do ctrl+c we come out to host and container exited -
+we can use mode -d-dettached mode and runnin in the background.
+Modes - 
+--docker run --name n1 -d nginx -> this time image won't pulled from hub because pulled from previous step
+check using docker ps -a
+docker container ls 
+
+--docker run --name u1 -it ubuntu -> inside the container at interactive terminal
+#it mode won't work for nginx it will only run for os level image.
+go into container -> and run apt-get update
+#how to come out from this container but it will exit and dont want to exit this container 
+
+ctrl p + ctrl q-> it will only work for os type images
+
+exit command will exit
+you can start the container docker start <container name> -> go to inside container docker attach u1
+
+docker stop <container_name>
+
+details of docker container provided in json format - docker inspect <containername> 
+	gives the details of network(same brdge network)
+
+-----
+Lets create one database container -but need the db password and some setup for env variables.
+docker run --name mydb -d -e MYSQL_ROOT_PASSWORD=ali123 mariadb 
+
+how to go inside this db container ? first go to the terminal of db 
+docker exec -it mydb bash -> into the container
+/ -> mysql -u root -p
+Enter password:
+Mariadb> use mysql;
+Mariadb> show databses
+
+here after exit from container, will up and running.
+
+Custom docker image creation -
+1.) 
+build->ship-> run
+++dockerfile++
+[root@ip-172-31-14-233 ec2-user]# cat dockerfile
+FROM ubuntu
+MAINTAINER ali
+RUN apt-get update
+RUN apt-get install -y nginx
+COPY index.html /var/www/html
+CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 80
+
+++END++
+
+docker file -custom image - tagiing and pushing -
+2.) 
+docker build -t my_nginx_image:v1 .
+
+3.) 
+change the name of the image created by docker file ->
+docker tag my_nginx_image:v1 mhali/mynginx:v1
+
+4.) Login to Dockerhub
+docker login -> User name and password
+
+5.) Pushing an image into my dockerhub account - 
+docker push mhali/mynginx:v3
+
+6.) Run the container -
+docker run -d --name myn2 -p 8989:80 mhali/mynginx:v3
+
+
+
+docker run -d --name jenkins_s -p 8080:8080 jenkins/jenkins
+
+From tomcat
+
+RUN mkdir -p /opt/app
+ENV PROJECT_HOME /opt/app
+
+COPY target/addressbook.war $PROJECT_HOME/addressbook.war
+
+WORKDIR $PROJECT_HOME
+CMD ["catalina.sh", "run"]
+EXPOSE 8080
+
+Into Jenkins JOB -
+
+rm -rf mydockerfile -> older file delete
+mkdir mydockerfile -> create a new DIR
+cd mydockerfile -> go to this DIR
+cp /var/lib/jenkins/workspace/package/target/addressbook.war .    -> copy addressbook.war file from jenkins workspace to container's dir
+touch dockerfile
+cat <<EOT>> dockerfile
+From tomcat
+ADD addressbook.war /usr/local/tomcat/webapps
+EXPOSE 8080
+CMD ["catalina.sh", "run"]
+EOT
+sudo docker build -t myimage:$BUILD_NUMBER .
+sudo docker run -itd -P myimage:$BUILD_NUMBER
+
+
+
+docker rm -f $(docker ps -aq)
+docker system purne --all
+docker system df
