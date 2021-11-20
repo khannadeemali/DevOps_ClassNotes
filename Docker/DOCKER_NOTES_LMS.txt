@@ -375,7 +375,7 @@ Go back to jenkins and build now.
 
 Access from browser
 
-http://18.221.206.57:32768/addressbook/
+http://18.221.206.57:49153/addressbook/
 
 ******************************************************************************
 
