@@ -1,0 +1,89 @@
+Task 1 - 
+1. Application ko server pe run karna hai 
+EC2 - Server (Linux)
+2. sudo yum install httpd
+3. EC2 ke SG me Port 80(Inbound)
+4. public IP ko web browser se open kiya
+5. cd /var/www/html
+6. vi index.html -> content daal diya
+7. web me IP ko open kiya 
+
+Task 2 -
+
+1. EC2 par docker install 
+2. sudo chmod 777 /var/run/docker.sock
+3. docker images 
+4. docker pull nginx - it has only downloaded docker image of nginx on your EC2.
+5. docker run -dit -p 8080:80 nginx  - run the image of nginx
+6. Open with EC2 IP:8080   [8080 is a container port]
+
+Application(HTML) - > Web server -> Server 
+
+
+
+http://www.google.com
+
+
+35.172.180.14:80
+
+1  hostname
+    2  uname -a
+    3  pwd
+    4  ls -l
+    5  touch file1
+    6  ll
+    7  echo "hello World" > file1
+    8  ls -l
+    9  cat file1
+   10  cat file1 | wc -l
+   11  cat file1 | wc -w
+   12  cat file1
+   13  cat file1 | wc -c
+   14  cat file1 | sed 'r/World/India' > file2
+   15  ls -l
+   16  cat file2
+   17  cat file1
+   18  man
+   19  man ls
+   20  exit
+   21  sudo yum install httpd
+   22  systemctl status httpd
+   23  systemctl restart httpd
+   24  sudo systemctl restart httpd
+   25  sudo systemctl status httpd
+   26  ps -ef | grep http
+   27  sudo systemctl status httpd
+   28  docker
+   29  sudo yum install docker
+   30  docker
+   31  docker -version
+   32  docker --version
+   33  docker images
+   34  sudo systemctl restart docker
+   35  sudo systemctl status docker
+   36  docker images
+   37  chmod 777 /var/run/docker.sock
+   38  sudo chmod 777 /var/run/docker.sock
+   39  docker images
+   40  pwd
+   41  cd /var/www/html
+   42  vi index.html
+   43  sudo vi index.html
+   44  ls -l
+   45  vi index.html
+   46  sudo vi index.html
+   57  docker ps -a
+
+   59
+   60  docker ps
+   61  sudo systemctl stop httpd
+   62  sudo systemctl status httpd
+   63  docker delete cool_roentgen
+   64  docker stop cool_roentgen
+   65  docker ps
+   71  docker run -dit -p 8080:80 nginx
+   72  docker ps
+   73  sudo systemctl start httpd
+   74  sudo systemctl status httpd
+   75  history
+[ec2-user@ip-172-31-28-147 ~]$
